@@ -14,6 +14,27 @@ type tests = [Expect<Equal<myFuncReturn, string>>];
 //01. Parameters
 function func(foo: string, obj: { bar: number; bas: boolean }) {}
 
+function myFunction(
+  param1: string,
+  param2: number,
+  param3: { foo: string; bar: number }
+) {}
+
+type MyFuncParams = Parameters<typeof myFunction>;
+//myFunctionParams 타입 :
+// [ param1: string,
+//   param2: number,
+//   param3: { foo: string; bar: number }]
+
+type tests2 = [
+  Expect<
+    Equal<
+      MyFuncParams,
+      [param1: string, param2: number, param3: { foo: string; bar: number }]
+    >
+  >
+];
+
 //func의 파라미터 타입을 가져옴
 type FuncParameters = Parameters<typeof func>;
 
